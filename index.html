@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="/angular-1.8.2/angular.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'Graphic'],
+                ['Ligações', 6],
+                ['Chat', 10],
+                ['WhatsApp', 27],
+                ['E-mail', 0],
+                ['Ticket', 16],
+                ['Bot',  58],
+            ]);
+
+            var options = {
+                height: 300,
+                pieHole: 0.3,
+                slices: {
+                    0: { color: '#32346F' },
+                    1: { color: '#2D5E98' },
+                    2: { color: '#2C8BB9' },
+                    3: { color: '#41B7D3' },
+                    4: { color: '#6AE4E7' },
+                    5: { color: '#41B7D3' },
+                },
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+            chart.draw(data, options);
+        }
+    </script>
+    <title>Document</title>
+</head>
+<body ng-app="projetoFrontEnd">
+    <header>
+        <h1>Dashboard Call Center</h1>
+        <h5>Visão Executiva</h5>
+    </header>
+    <section ng-controller="dataBaseCtrl">
+        <div class="card" ng-repeat="header in titleCard">
+            <div class="header-card">
+                <img src="{{ header.imagem }}" width="15">
+                <span>{{ header.title }}</span>
+            </div>
+            <hr>
+            <div ng-if="header.title == 'Ligações'" class="contentCard" ng-repeat="label in dataCardLigacoes">
+                <label for="">{{ label.descricao }}</label>
+                <span>{{ label.enumerador }}</span>
+            </div>
+            <div ng-if="header.title == 'Chat'" class="contentCard" ng-repeat="label in dataCardChat">
+                <label for="">{{ label.descricao }}</label>
+                <span>{{ label.enumerador }}</span>
+            </div>
+            <div ng-if="header.title == 'WhatsApp'" class="contentCard" ng-repeat="label in dataCardWhatsApp">
+                <label for="">{{ label.descricao }}</label>
+                <span>{{ label.enumerador }}</span>
+            </div>
+            <div ng-if="header.id == $index" class="contentCard">
+                <div id="donutchart"></div>
+            </div>
+            <div ng-if="header.title == 'E-mail'" class="contentCard" ng-repeat="label in dataCardEmail">
+                <label for="">{{ label.descricao }}</label>
+                <span>{{ label.enumerador }}</span>
+            </div>
+            <div ng-if="header.title == 'Ticket'" class="contentCard" ng-repeat="label in dataCardTicket">
+                <label for="">{{ label.descricao }}</label>
+                <span>{{ label.enumerador }}</span>
+            </div>
+            <div ng-if="header.title == 'Bot'" class="contentCard" ng-repeat="label in dataCardBot">
+                <label for="">{{ label.descricao }}</label>
+                <span>{{ label.enumerador }}</span>
+            </div>
+            <div ng-if="header.title == 'Agentes'" class="contentCard" ng-repeat="label in dataCardAgentes">
+                <label for="">{{ label.descricao }}</label>
+                <span>{{ label.enumerador }}</span>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
