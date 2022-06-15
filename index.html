@@ -12,26 +12,27 @@
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
-                ['Task', 'Graphic'],
-                ['Ligações', 6],
-                ['Chat', 10],
-                ['WhatsApp', 27],
-                ['E-mail', 0],
-                ['Ticket', 16],
-                ['Bot',  58],
+              ['Task', 'Graphic'],
+              ['Ligações', 6],
+              ['Chat', 10],
+              ['WhatsApp', 27],
+              ['E-mail', 0],
+              ['Ticket', 16],
+              ['Bot',  58],
             ]);
 
             var options = {
-                height: 300,
-                pieHole: 0.3,
-                slices: {
-                    0: { color: '#32346F' },
-                    1: { color: '#2D5E98' },
-                    2: { color: '#2C8BB9' },
-                    3: { color: '#41B7D3' },
-                    4: { color: '#6AE4E7' },
-                    5: { color: '#41B7D3' },
-                },
+              width: 300,
+              height: 300,
+              pieHole: 0.3,
+              slices: {
+                  0: { color: '#32346F' },
+                  1: { color: '#2D5E98' },
+                  2: { color: '#2C8BB9' },
+                  3: { color: '#41B7D3' },
+                  4: { color: '#6AE4E7' },
+                  5: { color: '#41B7D3' },
+              },
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
